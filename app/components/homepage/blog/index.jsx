@@ -26,7 +26,7 @@ function Blog({ blogs }) {
           </div>
         </div>
   
-        <h1 className="text-2xl lg:text-4xl flex justify-center font-bold text-[#604ce0]">No Blogs Found</h1>
+        <span className="text-2xl lg:text-4xl flex justify-center font-bold text-[#604ce0]">No Blogs Found</span>
       </div>
     );
   }
