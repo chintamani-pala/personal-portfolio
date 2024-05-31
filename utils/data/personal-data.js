@@ -2,7 +2,7 @@ export const personalData = {
   name: "Chintamani Pala",
   profile: '/profile.png',
   profile2: '/profile2.png',
-  profession:["frontend development", "backend development", "android development", "web development"],
+  profession:["frontend development", "backend development", "Full stack web development", "software development"],
   description: "Hey there! I'm Chintamani Pala, a dedicated programmer driven by passion and curiosity. With an insatiable thirst for knowledge, I embrace every opportunity to learn and grow. Exploring the vast realm of technology is my playground, and I thrive on the challenge of solving complex problems. As a versatile developer, I revel in the diversity of web application development stacks, constantly pushing boundaries to create innovative solutions. JavaScript is my trusted companion in this journey, empowering me to build dynamic and impactful projects across the digital landscape.",
   email: 'chintamanipala67@gmail.com',
   phone: '+91 7605900445',
