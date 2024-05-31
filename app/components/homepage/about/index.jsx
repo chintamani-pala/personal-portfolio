@@ -20,7 +20,7 @@ function AboutSection() {
           <div className="flex items-center lg:hidden mx-auto my-auto justify-center">
             <span className="w-24 h-[2px] bg-[#1a1443]"></span>
             <span className="bg-[#1a1443] w-fit text-white p-2 px-5 text-xl rounded-md">
-              About Me
+              About
             </span>
             <span className="w-24 h-[2px] bg-[#1a1443]"></span>
           </div>
