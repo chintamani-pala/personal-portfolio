@@ -1,6 +1,9 @@
 // @flow strict
 import Link from 'next/link';
 import { personalData } from "@/utils/data/personal-data";
+import { FaHeart } from "react-icons/fa";
+
+
 
 function Footer() {
   return (
@@ -11,7 +14,7 @@ function Footer() {
         </div>
         <div className="text-2xl flex flex-col md:flex-row items-center justify-center">
           <p className="lg:text-2xl text-sm">
-            © Developer Portfolio by <Link target="_blank" href={personalData.linkedIn} className="text-[#16f2b3]">{personalData.name}</Link>
+          Designed with <FaHeart className="heartBeat" style={{color: "#ff0000", display: "inline"}} /> By <Link target="_blank" href={personalData.github} className="text-[#16f2b3]">{personalData.name}</Link>
           </p>
           
         </div>
