@@ -5,8 +5,10 @@ import { personalData } from "@/utils/data/personal-data";
 function Navbar() {
   return (
     <>
+    <div className="sticky top-0">
     <div className="absolute top-[80vh] left-0 animated-wrapper filter blur-3xl z-20">
       <div className="w-24 h-24 rounded-full border-4 border-white fixed glow" style={{ left: '20%', transform: 'translate(-50%, -50%)' }}></div>
+    </div>
     </div>
     <nav className="bg-transparent">
       <div className="flex items-center justify-between py-5">
