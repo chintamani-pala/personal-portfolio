@@ -127,7 +127,7 @@ const personalData = {
 ```
 
 `devUsername` Used for fetching blog from `dev.to`.
----
+<br/>
 `githubUserName` Used for fetching The contribution table from `github.com`.
 
 ---
