@@ -21,7 +21,12 @@ export default function security() {
               })
         }
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
-        return false;
+          event.preventDefault();
+          Swal.fire({
+              icon: 'error',
+              text: "Please Don't Try To Inspect Our Code Because Too Many Hard Work Is Invested To Write The Programe",
+            
+            })
         }
         if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
         return false;
