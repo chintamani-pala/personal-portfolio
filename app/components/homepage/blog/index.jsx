@@ -4,28 +4,18 @@ import { FaArrowRight } from 'react-icons/fa';
 import BlogCard from './blog-card';
 import { personalData } from "@/utils/data/personal-data";
 import React, { useEffect, useState } from 'react';
-function Blog() {
-  const [blogs,setBlogs]=useState([]);
-  useEffect(()=>{
-    async function getBlogs() {
-      const res = await fetch(`https://dev.to/api/articles?username=chintamani_pala`)
+async function getBlogs() {
+  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
 
-      if (!res.ok) {
-          throw new Error('Failed to fetch data')
-      }
-      console.log(res)
-      const data = await res.json();
-      console.log("data "+data)
-      const filtered = data
-    .filter(item => item.cover_image)  // Filtering out items that have a cover image
-    .sort(() => Math.random() - 0.5); // Shuffling the array randomly
-      console.log("the filtered data is"+ filtered)
-      setBlogs(filtered)
-  };
-    getBlogs()
-  },[])
-  
-  
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
+
+  const data = await res.json();
+  return data;
+};
+function Blog() {
+  blogs=getBlogs()
   console.log("the length is "+ blogs.length)
   if (blogs.length === 0) {
     return (
