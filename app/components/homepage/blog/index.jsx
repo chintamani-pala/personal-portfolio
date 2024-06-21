@@ -15,6 +15,7 @@ function Blog() {
       }
 
       const data = await res.json();
+      console.log(data)
       const filtered = data
     .filter(item => item.cover_image)  // Filtering out items that have a cover image
     .sort(() => Math.random() - 0.5); // Shuffling the array randomly
