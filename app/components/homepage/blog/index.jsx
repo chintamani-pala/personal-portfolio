@@ -13,7 +13,7 @@ function Blog() {
       if (!res.ok) {
           throw new Error('Failed to fetch data')
       }
-      console.log("res"+res)
+      console.log(res)
       const data = await res.json();
       console.log("data "+data)
       const filtered = data
