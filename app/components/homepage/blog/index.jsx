@@ -4,7 +4,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import BlogCard from './blog-card';
 
 function Blog({ blogs }) {
-  console.log(blogs)
+  console.log("the length is "+ blogs.length)
   if (blogs.length === 0) {
     return (
       <div id='blogs' className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
