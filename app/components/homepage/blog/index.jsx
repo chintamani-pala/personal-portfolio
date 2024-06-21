@@ -4,19 +4,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import BlogCard from './blog-card';
 import { personalData } from "@/utils/data/personal-data";
 import React, { useEffect, useState } from 'react';
-function Blog() {
-  async function getBlogs() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  const data = await res.json();
-  return data;
-};
-  const blogs=getBlogs()
-  console.log("the length is "+ blogs.length)
+function Blog({blogs}) {
   if (blogs.length === 0) {
     return (
       <div id='blogs' className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
