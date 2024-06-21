@@ -4,7 +4,7 @@ import { FaArrowRight } from 'react-icons/fa';
 import BlogCard from './blog-card';
 import React, { useEffect, useState } from 'react';
 function Blog() {
-  const [blogs,setBlogs]=useState([])
+  const [blogs,setBlogs]=useState([]);
   useEffect(()=>{
     async function getBlogs() {
       const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
@@ -20,7 +20,7 @@ function Blog() {
       setBlogs(filtered)
   };
     getBlogs()
-  })
+  },[])
   
   
   console.log("the length is "+ blogs.length)
