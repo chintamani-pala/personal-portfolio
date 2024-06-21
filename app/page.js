@@ -66,8 +66,7 @@ import Github from "./components/homepage/github";
 import security from "./security"
 
 async function getData() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`);
-
+  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
   if (!res.ok) {
     throw new Error('Failed to fetch data');
   }
@@ -75,7 +74,7 @@ async function getData() {
   const data = await res.json();
 
   const filtered = data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
-
+ throw new Error(filtered);
   return filtered;
 }
 
