@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 import BlogCard from './blog-card';
+import { personalData } from "@/utils/data/personal-data";
 import React, { useEffect, useState } from 'react';
 function Blog() {
   const [blogs,setBlogs]=useState([]);
