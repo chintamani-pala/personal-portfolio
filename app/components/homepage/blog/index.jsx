@@ -3,7 +3,26 @@ import Link from 'next/link';
 import { FaArrowRight } from 'react-icons/fa';
 import BlogCard from './blog-card';
 
-function Blog({ blogs }) {
+function Blog() {
+  const [blogs,setBlogs]=useState([])
+  useEffect(()=>{
+    async function getBlogs() {
+      const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+
+      if (!res.ok) {
+          throw new Error('Failed to fetch data')
+      }
+
+      const data = await res.json();
+      const filtered = data
+    .filter(item => item.cover_image)  // Filtering out items that have a cover image
+    .sort(() => Math.random() - 0.5); // Shuffling the array randomly
+      setBlogs(filtered)
+  };
+    getBlogs()
+  })
+  
+  
   console.log("the length is "+ blogs.length)
   if (blogs.length === 0) {
     return (
