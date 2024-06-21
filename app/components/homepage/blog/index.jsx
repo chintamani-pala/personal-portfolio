@@ -15,7 +15,7 @@ async function getBlogs() {
   return data;
 };
 function Blog() {
-  blogs=getBlogs()
+  const blogs=getBlogs()
   console.log("the length is "+ blogs.length)
   if (blogs.length === 0) {
     return (
