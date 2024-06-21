@@ -84,6 +84,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchData() {
       const blogsData = await getData();
+     console.log("the length is "+blogsData.length+"at layout")
       setBlogs(blogsData);
     }
     fetchData();
