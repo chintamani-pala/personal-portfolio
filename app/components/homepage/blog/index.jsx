@@ -8,7 +8,7 @@ function Blog() {
   const [blogs,setBlogs]=useState([]);
   useEffect(()=>{
     async function getBlogs() {
-      const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+      const res = await fetch(`https://dev.to/api/articles?username=chintamani_pala`)
 
       if (!res.ok) {
           throw new Error('Failed to fetch data')
