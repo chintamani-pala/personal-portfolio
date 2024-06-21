@@ -17,6 +17,7 @@ function Blog() {
       const filtered = data
     .filter(item => item.cover_image)  // Filtering out items that have a cover image
     .sort(() => Math.random() - 0.5); // Shuffling the array randomly
+      console.log("the filtered data is"+ filtered)
       setBlogs(filtered)
   };
     getBlogs()
