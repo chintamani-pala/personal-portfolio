@@ -66,15 +66,17 @@ import Github from "./components/homepage/github";
 import security from "./security"
 
 async function getData() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`);
   if (!res.ok) {
-    throw new Error('Failed to fetch data');
+    throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
   }
 
   const data = await res.json();
 
-  const filtered = data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
- throw new Error(filtered);
+  const filtered = data
+    .filter(item => item.cover_image)  // Filtering out items that have a cover image
+    .sort(() => Math.random() - 0.5); // Shuffling the array randomly
+
   return filtered;
 }
 
