@@ -66,30 +66,24 @@ import Github from "./components/homepage/github";
 import security from "./security"
 
 async function getData() {
-  const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`);
+ const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+
   if (!res.ok) {
-    throw new Error(`Failed to fetch data: ${res.status} ${res.statusText}`);
+    throw new Error('Failed to fetch data')
   }
 
   const data = await res.json();
 
-  // Filtering out items that have a cover image
+ const filtered = data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
 
-  return filtered;
-}
+   return filtered;
+};
 
 export default function Home() {
-  const [blogs, setBlogs] = useState([]);
-
   useEffect(() => {
-    async function fetchData() {
-      const blogsData = await getData();
-      setBlogs(blogsData);
-    }
-    fetchData();
     security()
   }, []);
-
+  const blogs = await getData();
   return (
     <>
       <HeroSection />
@@ -98,7 +92,7 @@ export default function Home() {
       <Skills />
       <Experience />
       <Education />
-      <Blog/>
+      <Blog blogs={blogs} />
       <Github />
       <ContactSection />
     </>
