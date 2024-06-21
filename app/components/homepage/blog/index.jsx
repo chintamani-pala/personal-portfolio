@@ -13,9 +13,9 @@ function Blog() {
       if (!res.ok) {
           throw new Error('Failed to fetch data')
       }
-
+      console.log("res"+res)
       const data = await res.json();
-      console.log(data)
+      console.log("data "+data)
       const filtered = data
     .filter(item => item.cover_image)  // Filtering out items that have a cover image
     .sort(() => Math.random() - 0.5); // Shuffling the array randomly
