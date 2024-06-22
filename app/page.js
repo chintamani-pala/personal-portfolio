@@ -52,7 +52,7 @@
 
 
 "use client"
-import React, { useEffect, useState,Suspense } from 'react';
+import React, { useEffect, useState } from 'react';
 import { personalData } from "@/utils/data/personal-data";
 import AboutSection from "./components/homepage/about";
 import Blog from "./components/homepage/blog";
@@ -86,7 +86,7 @@ export default async function Home() {
   const blogs = await getData();
   return (
     <>
-      <Suspense>
+     
       <HeroSection />
       <AboutSection />
       <Projects />
@@ -96,7 +96,7 @@ export default async function Home() {
       <Blog blogs={blogs} />
       <Github />
       <ContactSection />
-   </Suspense>
+  
     </>
   );
 }
