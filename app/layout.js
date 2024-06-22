@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <Suspense fallback={<h1>Loading...</h1>}>
+    
     <html lang="en">
       <body className={inter.className}>
         <ToastContainer />
@@ -30,6 +30,5 @@ export default function RootLayout({ children }) {
       </body>
       <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM} />
     </html>
-  </Suspense>
   )
 };
