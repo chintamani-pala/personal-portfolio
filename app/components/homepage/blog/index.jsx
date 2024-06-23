@@ -4,7 +4,24 @@ import { FaArrowRight } from 'react-icons/fa';
 import BlogCard from './blog-card';
 import { personalData } from "@/utils/data/personal-data";
 import React, { useEffect, useState } from 'react';
-function Blog({blogs}) {
+function Blog() {
+  const [blogs,setBlogs]=useState([]);
+  useEffect(()=>{
+    async function getBlogs() {
+      const res = await fetch(`https://dev.to/api/articles?username=chintamani_pala`)
+
+      if (!res.ok) {
+          throw new Error('Failed to fetch data')
+      }
+      const data = await res.json();
+      
+      const filtered = data
+    .filter(item => item.cover_image)  // Filtering out items that have a cover image
+    .sort(() => Math.random() - 0.5); // Shuffling the array randomly
+      setBlogs(filtered)
+  };
+    getBlogs()
+  },[])
   if (blogs.length === 0) {
     return (
       <div id='blogs' className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
