@@ -65,38 +65,22 @@ import Skills from "./components/homepage/skills";
 import Github from "./components/homepage/github";
 import security from "./security"
 
-async function getData() {
- const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
-
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
-
-  const data = await res.json();
-
- const filtered = data.filter((item) => item?.cover_image).sort(() => Math.random() - 0.5);
-
-   return filtered;
-};
-
-export default async function Home() {
-  useEffect(() => {
+export default function Home() {
+  useEffect(() => {    
     security()
   }, []);
-  const blogs = await getData();
+
   return (
     <>
-     
       <HeroSection />
       <AboutSection />
       <Projects />
       <Skills />
       <Experience />
       <Education />
-      <Blog blogs={blogs} />
+      <Blog/>
       <Github />
       <ContactSection />
-  
     </>
   );
 }
