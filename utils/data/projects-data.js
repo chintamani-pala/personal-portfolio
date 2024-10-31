@@ -24,7 +24,7 @@ export const projectsData = [
         code: '',
         demo: '',
         github:"https://github.com/chintamani-pala/lms-frontend",
-        live:"https://lms-frontend-ten-kappa.vercel.app/",
+        live:"https://learn.chintamanipala.in/",
     },
     {
         id: 3,
