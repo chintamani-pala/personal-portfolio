@@ -41,7 +41,7 @@ export const projectsData = [
         id: 4,
         name: 'A ELearning Management System',
         description: "Our eLearning Management System (LMS) is a comprehensive platform designed to streamline and enhance the learning experience for educators and learners alike. With powerful features and intuitive functionality, our LMS empowers organizations to deliver engaging and effective online courses, training programs, and educational content.",
-        tools: ['React', 'JSX', 'Tailwind', 'Express Js', 'Typescript', 'Radis', 'MongoDB'],
+        tools: ['React', 'JSX', 'Tailwind', 'Express Js', 'Typescript', 'Redis', 'MongoDB'],
         role: 'Full Stack Developer',
         code: '',
         demo: '',
