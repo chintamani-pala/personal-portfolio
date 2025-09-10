@@ -15,5 +15,5 @@ export const personalData = {
   leetcode: "https://leetcode.com/chintamanipala/",
   githubUserName: "chintamani-pala",
   devUsername: "chintamani_pala",
-  resume: "https://drive.google.com/file/d/1jqTrOfoGd3ytXR3H9KyV7VylPAIQWqCU/view?usp=sharing"
+  resume: "https://drive.google.com/file/d/1W0xSO9hKY9C2RjLJxLreBm78cIuMXP9O/view?usp=sharing"
 }
