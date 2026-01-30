@@ -2,11 +2,11 @@ export const personalData = {
   name: "Chintamani Pala",
   profile: '/profile.png',
   profile2: '/profile2.png',
-  profession:["frontend development", "backend development", "Full stack web development", "software development"],
-  description: "Hey there! I'm Chintamani Pala, a dedicated programmer driven by passion and curiosity. With an insatiable thirst for knowledge, I embrace every opportunity to learn and grow. Exploring the vast realm of technology is my playground, and I thrive on the challenge of solving complex problems. As a versatile developer, I revel in the diversity of web application development stacks, constantly pushing boundaries to create innovative solutions. JavaScript is my trusted companion in this journey, empowering me to build dynamic and impactful projects across the digital landscape.",
+  profession: ["Software Developer", "Frontend Development", "Backend Development", "AI/Agentic Workflows"],
+  description: "Software Developer with 1+ year of experience and hands-on expertise in React.js, FastAPI, and RESTful APIs. Focused on building scalable and user-centric web applications, I specialize in AI-powered systems, Chrome extensions, and agentic workflows using modern LLM frameworks. Passionate about clean code, reusable components, and end-to-end product development.",
   email: 'chintamanipala67@gmail.com',
   phone: '+91 7605900445',
-  address: 'Bramhapur, Ganjam, Odisha  - 760006 India',
+  address: 'Bramhapur, Ganjam, Odisha - 760006 India',
   github: 'https://github.com/chintamani-pala',
   facebook: 'https://www.facebook.com/chintamanipala0',
   linkedIn: 'https://in.linkedin.com/in/chintamani-pala/',
@@ -17,3 +17,4 @@ export const personalData = {
   devUsername: "chintamani_pala",
   resume: "https://drive.google.com/file/d/1W0xSO9hKY9C2RjLJxLreBm78cIuMXP9O/view?usp=sharing"
 }
+

@@ -73,10 +73,20 @@ function Experience() {
                         <p className="text-base sm:text-xl mb-2 font-medium uppercase">
                           {experience.title}
                         </p>
-                        <p className="text-sm sm:text-base">
+                        <p className="text-sm sm:text-base mb-2">
                           {experience.company}
                         </p>
+                        {experience.description && (
+                          <ul className="list-disc list-outside ml-4 text-xs sm:text-sm text-[#d3d8e8] space-y-1">
+                            {experience.description.map((item, index) => (
+                              <li key={index} className="pl-1">
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </div>
+
                     </div>
                   </div>
                 </GlowCard>
