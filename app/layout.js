@@ -11,9 +11,9 @@ const inter = Inter({ subsets: ['latin'] });
 import {Suspense} from "react"
 
 export const metadata = {
-  title: `${personalData.name}: Portfolio - Web developer`,
-  description: `Welcome to ${personalData.name}'s portfolio. I'm a self-taught full stack developer passionate about learning and collaboration. Let's create innovative web solutions together..`,
-  keywords:"chintamani pala , full stack web developer, chintamani , pala, web developer , backend developer, frontend developer, software developer, giet university"
+  title: `${personalData.name}: Portfolio - Systems Engineer`,
+  description: `Welcome to ${personalData.name}'s portfolio. I am a Systems Engineer @TCS specializing in backend development, AI & RAG solutions, and building scalable web applications.`,
+  keywords:"chintamani pala, systems engineer, tcs, backend developer, software engineer, full stack developer, web developer, giet university, react, fastapi"
 };
 
 export default function RootLayout({ children }) {

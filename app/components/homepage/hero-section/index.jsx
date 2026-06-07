@@ -45,7 +45,7 @@ function HeroSection() {
               {/* <span className="text-2xl text-[#e7eae9]">
             {"I Am Into "}
             </span> */}
-              {"I Am Into "}
+              {"I focus on "}
               <span className="text-[#16f2b3]">
                 <Typewriter
                   options={{
