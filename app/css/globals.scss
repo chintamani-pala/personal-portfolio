@@ -116,3 +116,15 @@ body {
     transform: scale(1.1);
   }
 }
+
+.agent-highlight {
+  outline: 3px solid #16f2b3 !important;
+  box-shadow: 0 0 25px rgba(22, 242, 179, 0.6) !important;
+  animation: pulse-highlight 2s infinite ease-in-out !important;
+}
+
+@keyframes pulse-highlight {
+  0% { box-shadow: 0 0 10px rgba(22, 242, 179, 0.4); }
+  50% { box-shadow: 0 0 35px rgba(22, 242, 179, 0.9); }
+  100% { box-shadow: 0 0 10px rgba(22, 242, 179, 0.4); }
+}
