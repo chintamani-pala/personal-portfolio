@@ -22,5 +22,6 @@ module.exports = {
   },
   experimental: {
     serverComponentsExternalPackages: ["@google/adk"],
+    esmExternals: "loose",
   },
 };
