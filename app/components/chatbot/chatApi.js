@@ -1,4 +1,4 @@
-const CHAT_API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL || "http://localhost:8000";
+const CHAT_API_URL = process.env.NEXT_PUBLIC_CHAT_API_URL || "https://portfolio-chatbot-w2wa.onrender.com";
 
 export async function sendMessage(query) {
   const response = await fetch(`${CHAT_API_URL}/chat`, {
