@@ -64,6 +64,7 @@ import Projects from "./components/homepage/projects";
 import Skills from "./components/homepage/skills";
 import Github from "./components/homepage/github";
 import security from "./security"
+import Chatbot from "./components/chatbot/Chatbot";
 
 export default function Home() {
   useEffect(() => {    
@@ -81,6 +82,7 @@ export default function Home() {
       <Blog/>
       <Github />
       <ContactSection />
+      <Chatbot />
     </>
   );
 }
