@@ -242,7 +242,7 @@ export default function Chatbot() {
 
             <div ref={messagesEndRef} />
 
-            {availableSuggestions.length > 0 && (
+            {messages.length > 0 && !isLoading && availableSuggestions.length > 0 && (
               <div className="mt-4">
                 <p className="text-gray-500 text-xs mb-2">Suggested questions</p>
                 <div className="flex flex-col gap-2">
