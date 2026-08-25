@@ -1,4 +1,6 @@
 // @flow strict
+export const dynamic = 'force-dynamic';
+
 import ProjectCard from "../components/homepage/projects/project-card";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";

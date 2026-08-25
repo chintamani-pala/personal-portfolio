@@ -1,4 +1,5 @@
 // @flow strict
+export const dynamic = 'force-dynamic';
 
 import Experience from "../components/homepage/experience";
 import Link from "next/link";
