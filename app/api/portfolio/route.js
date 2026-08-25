@@ -3,11 +3,30 @@ import { NextResponse } from 'next/server';
 const BACKEND_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 const CACHE_FILE = require('path').join(process.cwd(), 'public', 'portfolio-cache.json');
 
+function isBackendReachable(url) {
+  try {
+    const parsed = new URL(url);
+    return !(parsed.hostname === 'localhost' || parsed.hostname === '127.0.0.1');
+  } catch {
+    return false;
+  }
+}
+
 export async function GET() {
   try {
+    if (!isBackendReachable(BACKEND_URL)) {
+      const fs = await import('fs/promises');
+      const content = await fs.readFile(CACHE_FILE, 'utf-8');
+      const cache = JSON.parse(content);
+      if (cache.data) {
+        return NextResponse.json(cache.data);
+      }
+      return NextResponse.json({ error: 'Backend not configured' }, { status: 500 });
+    }
+
     const versionRes = await fetch(`${BACKEND_URL}/api/v1/admin/portfolio/version`, {
       headers: { 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN || ''}` },
-      // next: { revalidate: 0 },
+      next: { revalidate: 0 },
       cache: 'no-store',
     });
 
