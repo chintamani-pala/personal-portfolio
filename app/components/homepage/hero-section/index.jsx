@@ -24,10 +24,10 @@ const defaultOptions = {
 
 function HeroSection({ data }) {
   const personalData = data || {};
-  const professionStrings = Array.isArray(personalData.profession) 
+  const professionStrings = Array.isArray(personalData.profession)
     ? personalData.profession.map((val) => `${val}`)
     : [];
-  
+
   return (
     <>
       <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
@@ -46,7 +46,7 @@ function HeroSection({ data }) {
               {`I'm`}{" "}
               <span className=" text-pink-500">{personalData.name} ,</span>
               <br />
-              {"I focus on "}
+              {"I specialize in "}
               <span className="text-[#16f2b3]">
                 {professionStrings.length > 0 ? (
                   <Typewriter
