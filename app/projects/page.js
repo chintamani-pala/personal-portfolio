@@ -4,11 +4,7 @@ import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
 async function getProjects() {
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-  const res = await fetch(`${baseUrl}/api/v1/admin/portfolio/snapshot`, {
-    headers: {
-      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN || ''}`,
-    },
+  const res = await fetch('/api/portfolio', {
     next: { revalidate: 60 },
   });
 
@@ -17,7 +13,7 @@ async function getProjects() {
   }
 
   const json = await res.json();
-  const items = json.data?.projects || [];
+  const items = json.projects || [];
   return items.map((p) => ({
     id: p.id,
     name: p.name,

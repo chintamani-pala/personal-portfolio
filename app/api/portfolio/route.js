@@ -7,7 +7,7 @@ export async function GET() {
   try {
     const versionRes = await fetch(`${BACKEND_URL}/api/v1/admin/portfolio/version`, {
       headers: { 'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN || ''}` },
-      next: { revalidate: 0 },
+      // next: { revalidate: 0 },
       cache: 'no-store',
     });
 

@@ -87,15 +87,32 @@ export default function Home() {
 
   const mergedExperiences = useMemo(() => {
     if (portfolioData?.experiences?.length) {
-      return portfolioData.experiences.map((e) => ({
-        id: e.id,
-        title: e.title,
-        company: e.company,
-        duration: `${e.start_date || ""} - ${e.is_current ? "Present" : e.end_date || ""}`,
-        description: e.descriptions?.map((d) => d.description) || [],
-      }));
+      return portfolioData.experiences
+        .filter((e) => !e.featured)
+        .map((e) => ({
+          id: e.id,
+          title: e.title,
+          company: e.company,
+          duration: `${e.start_date || ""} - ${e.is_current ? "Present" : e.end_date || ""}`,
+          description: e.descriptions?.map((d) => d.description) || [],
+        }));
     }
     return experiences;
+  }, [portfolioData]);
+
+  const mergedFeaturedExperiences = useMemo(() => {
+    if (portfolioData?.experiences?.length) {
+      return portfolioData.experiences
+        .filter((e) => e.featured)
+        .map((e) => ({
+          id: e.id,
+          title: e.title,
+          company: e.company,
+          duration: `${e.start_date || ""} - ${e.is_current ? "Present" : e.end_date || ""}`,
+          description: e.descriptions?.map((d) => d.description) || [],
+        }));
+    }
+    return [];
   }, [portfolioData]);
 
   const mergedEducations = useMemo(() => {
@@ -116,20 +133,39 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    async function fetchData() {
+    let isMounted = true;
+
+    async function loadData() {
       try {
-        const res = await fetch('/api/portfolio');
+        const res = await fetch('/api/portfolio/cached');
         if (res.ok) {
           const data = await res.json();
-          setPortfolioData(data);
+          if (isMounted && data && data.cached !== false) {
+            setPortfolioData(data);
+            setLoading(false);
+          }
         }
       } catch (error) {
-        console.error("Failed to fetch portfolio data:", error);
-      } finally {
-        setLoading(false);
+        console.error("Failed to load cached portfolio data:", error);
+      }
+
+      try {
+        await fetch('/api/portfolio');
+      } catch (error) {
+        console.error("Failed to refresh portfolio data:", error);
+      }
+      finally {
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
-    fetchData();
+
+    loadData();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   if (loading) {
@@ -154,6 +190,7 @@ export default function Home() {
       <AboutSection data={mergedPersonalData} />
       <Projects data={mergedFeaturedProjects} />
       <Skills data={mergedSkills} />
+      {mergedFeaturedExperiences.length > 0 && <Experience data={mergedFeaturedExperiences} title="Featured Experiences" />}
       <Experience data={mergedExperiences} />
       <Education data={mergedEducations} />
       <Blog data={mergedPersonalData} />
