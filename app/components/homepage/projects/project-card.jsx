@@ -2,8 +2,47 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { FaEye, FaGithub } from "react-icons/fa";
+import { FaEye, FaGithub, FaExternalLinkAlt, FaFileAlt, FaNpm } from "react-icons/fa";
+
+function getLinkIcon(type) {
+  switch (type) {
+    case "github":
+      return FaGithub;
+    case "live":
+    case "demo":
+      return FaEye;
+    case "npm":
+      return FaNpm;
+    case "documentation":
+      return FaFileAlt;
+    default:
+      return FaExternalLinkAlt;
+  }
+}
+
+function getLinkLabel(link) {
+  if (link.label && link.label.trim()) {
+    return link.label;
+  }
+  switch (link.type) {
+    case "github":
+      return "Github Code";
+    case "live":
+      return "Live Preview";
+    case "demo":
+      return "Demo";
+    case "npm":
+      return "NPM";
+    case "documentation":
+      return "Documentation";
+    default:
+      return link.type.charAt(0).toUpperCase() + link.type.slice(1);
+  }
+}
+
 function ProjectCard({ project }) {
+  const links = project.links || [];
+
   return (
     <div className="from-[#0d1224] border-[#1b2c68a0] relative rounded-lg border bg-gradient-to-r to-[#0a0d37] w-full">
       <div className="flex flex-row">
@@ -62,30 +101,25 @@ function ProjectCard({ project }) {
             <span className="text-gray-400">{`};`}</span>
           </div>
         </code>
-        <div className="flex items-center gap-3 justify-center">
-          <Link
-            role="button"
-            target="_blank"
-            href={project.github}
-            className="bg-gradient-to-r to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
-          >
-            <button className="px-3 text-xs md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full border-none text-center md:text-sm font-medium uppercase tracking-wider text-[#ffff] no-underline transition-all duration-200 ease-out  md:font-semibold flex items-center gap-1 hover:gap-3">
-              <span>Github Code</span>
-              <FaGithub size={26} />
-            </button>
-          </Link>
-
-          <Link
-            className="bg-gradient-to-r to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
-            role="button"
-            target="_blank"
-            href={project.live}
-          >
-            <button className="px-3 text-xs md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full border-none text-center md:text-sm font-medium uppercase tracking-wider text-[#ffff] no-underline transition-all duration-200 ease-out  md:font-semibold flex items-center gap-1 hover:gap-3">
-              <span>Live Preview</span>
-              <FaEye size={26} />
-            </button>
-          </Link>
+        <div className="flex items-center gap-3 justify-center flex-wrap">
+          {links.map((link, index) => {
+            const Icon = getLinkIcon(link.type);
+            const label = getLinkLabel(link);
+            return (
+              <Link
+                key={index}
+                role="button"
+                target="_blank"
+                href={link.url}
+                className="bg-gradient-to-r to-pink-500 from-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-pink-500 hover:to-violet-600"
+              >
+                <button className="px-3 text-xs md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full border-none text-center md:text-sm font-medium uppercase tracking-wider text-[#ffff] no-underline transition-all duration-200 ease-out  md:font-semibold flex items-center gap-1 hover:gap-3">
+                  <span>{label}</span>
+                  <Icon size={26} />
+                </button>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

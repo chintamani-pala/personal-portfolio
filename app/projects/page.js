@@ -24,10 +24,9 @@ async function getProjects() {
     description: p.description || "",
     tools: Array.isArray(p.tools) ? p.tools : [],
     role: p.role || "",
-    code: "",
-    demo: "",
-    github: p.links?.find((l) => l.type === "github")?.url || "",
-    live: p.links?.find((l) => l.type === "live")?.url || "",
+    links: (p.links || [])
+      .filter((l) => l.url)
+      .sort((a, b) => (a.display_order || 0) - (b.display_order || 0)),
   }));
 }
 
