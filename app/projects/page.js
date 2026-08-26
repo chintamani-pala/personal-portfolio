@@ -1,35 +1,45 @@
 // @flow strict
-export const dynamic = 'force-dynamic';
+"use client";
 
+import { useEffect, useState } from "react";
 import ProjectCard from "../components/homepage/projects/project-card";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
-async function getProjects() {
-  const res = await fetch('/api/portfolio', {
-    next: { revalidate: 60 },
-  });
+function ProjectsPage() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch projects');
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch('/api/portfolio/cached');
+        if (res.ok) {
+          const data = await res.json();
+          const items = data.projects || [];
+          setProjects(items.map((p) => ({
+            id: p.id,
+            name: p.name,
+            description: p.description || "",
+            tools: Array.isArray(p.tools) ? p.tools : [],
+            role: p.role || "",
+            links: (p.links || [])
+              .filter((l) => l.url)
+              .sort((a, b) => (a.display_order || 0) - (b.display_order || 0)),
+          })));
+        }
+      } catch (error) {
+        console.error("Failed to fetch projects from cache:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  if (loading) {
+    return <div className="py-8 flex justify-center"><p>Loading projects...</p></div>;
   }
-
-  const json = await res.json();
-  const items = json.projects || [];
-  return items.map((p) => ({
-    id: p.id,
-    name: p.name,
-    description: p.description || "",
-    tools: Array.isArray(p.tools) ? p.tools : [],
-    role: p.role || "",
-    links: (p.links || [])
-      .filter((l) => l.url)
-      .sort((a, b) => (a.display_order || 0) - (b.display_order || 0)),
-  }));
-}
-
-export default async function page() {
-  const projectsData = await getProjects();
 
   return (
     <div className="py-8">
@@ -44,7 +54,7 @@ export default async function page() {
       </div>
        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3 md:gap-5 lg:gap-8 xl:gap-10">
         {
-          projectsData.map((project, i) => (
+          projects.map((project, i) => (
             <ProjectCard project={project} key={i}/>
           ))
         } 
@@ -52,3 +62,5 @@ export default async function page() {
     </div>
   );
 }
+
+export default ProjectsPage;

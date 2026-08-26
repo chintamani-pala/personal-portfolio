@@ -1,32 +1,42 @@
 // @flow strict
-export const dynamic = 'force-dynamic';
+"use client";
 
+import { useEffect, useState } from "react";
 import Experience from "../components/homepage/experience";
 import Link from "next/link";
 import { FaArrowRight } from "react-icons/fa";
 
-async function getExperiences() {
-  const res = await fetch('/api/portfolio', {
-    next: { revalidate: 60 },
-  });
+function ExperiencePage() {
+  const [experiences, setExperiences] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  if (!res.ok) {
-    throw new Error('Failed to fetch experiences');
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch('/api/portfolio');
+        if (res.ok) {
+          const data = await res.json();
+          const items = data.experiences || [];
+          setExperiences(items.map((e) => ({
+            id: e.id,
+            title: e.title,
+            company: e.company,
+            duration: `${e.start_date || ""} - ${e.is_current ? "Present" : e.end_date || ""}`,
+            description: e.descriptions?.map((d) => d.description) || [],
+          })));
+        }
+      } catch (error) {
+        console.error("Failed to fetch experiences:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  if (loading) {
+    return <div className="py-8 flex justify-center"><p>Loading experiences...</p></div>;
   }
-
-  const json = await res.json();
-  const items = json.experiences || [];
-  return items.map((e) => ({
-    id: e.id,
-    title: e.title,
-    company: e.company,
-    duration: `${e.start_date || ""} - ${e.is_current ? "Present" : e.end_date || ""}`,
-    description: e.descriptions?.map((d) => d.description) || [],
-  }));
-}
-
-export default async function page() {
-  const experiencesData = await getExperiences();
 
   return (
     <div className="py-8">
@@ -40,7 +50,7 @@ export default async function page() {
         </div>
       </div>
       <div className="max-w-4xl mx-auto">
-        <Experience data={experiencesData} title="All Experiences" />
+        <Experience data={experiences} title="All Experiences" />
       </div>
       <div className="flex justify-center  mt-5 lg:mt-12">
         <Link
@@ -55,3 +65,5 @@ export default async function page() {
     </div>
   );
 }
+
+export default ExperiencePage;
