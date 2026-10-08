@@ -82,7 +82,7 @@ export default function Home() {
       <Blog/>
       <Github />
       <ContactSection />
-      <Chatbot />
+      // <Chatbot />
     </>
   );
 }
