@@ -1,0 +1,16 @@
+export const SUGGESTED_QUESTIONS = [
+    "Who is Chintamani?",
+    "What does he do?",
+    "What are his skills?",
+    "What technologies does he know?",
+    "Tell me about his experience",
+    "Tell me about his projects",
+    "What is his strongest project?",
+    "What is his experience with AI?",
+    "What is his experience with RAG?",
+    "What AI technologies does he use?",
+    "What is he currently learning?",
+    "What are his career goals?",
+    "What is his educational background?",
+    "How can I contact him?",
+];

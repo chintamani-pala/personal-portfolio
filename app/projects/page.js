@@ -1,22 +1,46 @@
 // @flow strict
+"use client";
+
+import { useEffect, useState } from "react";
 import ProjectCard from "../components/homepage/projects/project-card";
-import { projectsData } from '@/utils/data/projects-data';
-// async function getBlogs() {
-//   const res = await fetch(`https://dev.to/api/articles?username=${personalData.devUsername}`)
+import Link from "next/link";
+import { FaArrowRight } from "react-icons/fa";
 
-//   if (!res.ok) {
-//     throw new Error('Failed to fetch data')
-//   }
+function ProjectsPage() {
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-//   const data = await res.json();
-//   return data;
-// };
+  useEffect(() => {
+    async function load() {
+      try {
+        const res = await fetch('/api/portfolio/cached');
+        if (res.ok) {
+          const data = await res.json();
+          const items = data.projects || [];
+          setProjects(items.map((p) => ({
+            id: p.id,
+            name: p.name,
+            description: p.description || "",
+            tools: Array.isArray(p.tools) ? p.tools : [],
+            role: p.role || "",
+            links: (p.links || [])
+              .filter((l) => l.url)
+              .sort((a, b) => (a.display_order || 0) - (b.display_order || 0)),
+          })));
+        }
+      } catch (error) {
+        console.error("Failed to fetch projects from cache:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
 
-async function page() {
-  //const blogs = await getBlogs();
-  // if(blogs.length === 0) {
-  //   return <h1 className="text-2xl lg:text-4xl flex justify-center font-bold text-[#604ce0]">No Blogs Found</h1>
-  // }
+  if (loading) {
+    return <div className="py-8 flex justify-center"><p>Loading projects...</p></div>;
+  }
+
   return (
     <div className="py-8">
       <div className="flex justify-center my-5 lg:py-8">
@@ -30,13 +54,13 @@ async function page() {
       </div>
        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3 md:gap-5 lg:gap-8 xl:gap-10">
         {
-          projectsData.map((project, i) => (
+          projects.map((project, i) => (
             <ProjectCard project={project} key={i}/>
           ))
         } 
       </div>
     </div>
   );
-};
+}
 
-export default page;
+export default ProjectsPage;

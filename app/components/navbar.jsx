@@ -1,8 +1,7 @@
 // @flow strict
 import Link from "next/link";
-import { personalData } from "@/utils/data/personal-data";
 
-function Navbar() {
+function Navbar({ name }) {
   return (
     <>
     <div className="sticky top-0">
@@ -16,7 +15,7 @@ function Navbar() {
           <Link
             href="/"
             className=" text-[#16f2b3] lg:text-3xl md:text-2xl text-sm font-bold">
-            {personalData.name}
+            {name}
           </Link>
         </div>
 

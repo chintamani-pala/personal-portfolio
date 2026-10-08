@@ -1,7 +1,6 @@
 // @flow strict
 
 import dynamic from "next/dynamic";
-import { experiences } from "@/utils/data/experience";
 import Image from "next/image";
 import { BsPersonWorkspace } from "react-icons/bs";
 import GlowCard from "../../helper/glow-card";
@@ -13,7 +12,8 @@ const AnimationLottie = dynamic(
   }
 );
 
-function Experience() {
+function Experience({ data }) {
+  const experiences = data || [];
   return (
     <div
       id="experience"

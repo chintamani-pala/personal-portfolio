@@ -1,9 +1,9 @@
 // @flow strict
 import Image from "next/image";
 import GitHubCalendar from "react-github-calendar";
-import { personalData } from "@/utils/data/personal-data";
 
-function Github() {
+function Github({ data }) {
+  const personalData = data || {};
   return (
     <div id="education" className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]">
       <Image

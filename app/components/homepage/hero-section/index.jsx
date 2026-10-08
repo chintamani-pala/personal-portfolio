@@ -1,5 +1,4 @@
 "use client";
-import { personalData } from "@/utils/data/personal-data";
 import Image from "next/image";
 import { Tilt } from "react-tilt";
 import Link from "next/link";
@@ -12,18 +11,23 @@ import { SiLeetcode } from "react-icons/si";
 import Typewriter from "typewriter-effect";
 
 const defaultOptions = {
-  reverse: false, // reverse the tilt direction
-  max: 25, // max tilt rotation (degrees)
-  perspective: 2000, // Transform perspective, the lower the more extreme the tilt gets.
-  scale: 1.05, // 2 = 200%, 1.5 = 150%, etc..
-  speed: 500, // Speed of the enter/exit transition
-  transition: true, // Set a transition on enter/exit.
-  axis: null, // What axis should be disabled. Can be X or Y.
-  reset: true, // If the tilt effect has to be reset on exit.
-  easing: "cubic-bezier(.03,.98,.52,.99)", // Easing on enter/exit.
+  reverse: false,
+  max: 25,
+  perspective: 2000,
+  scale: 1.05,
+  speed: 500,
+  transition: true,
+  axis: null,
+  reset: true,
+  easing: "cubic-bezier(.03,.98,.52,.99)",
 };
 
-function HeroSection() {
+function HeroSection({ data }) {
+  const personalData = data || {};
+  const professionStrings = Array.isArray(personalData.profession)
+    ? personalData.profession.map((val) => `${val}`)
+    : [];
+
   return (
     <>
       <section className="relative flex flex-col items-center justify-between py-4 lg:py-12">
@@ -42,20 +46,19 @@ function HeroSection() {
               {`I'm`}{" "}
               <span className=" text-pink-500">{personalData.name} ,</span>
               <br />
-              {/* <span className="text-2xl text-[#e7eae9]">
-            {"I Am Into "}
-            </span> */}
-              {"I focus on "}
+              {"I specialize in "}
               <span className="text-[#16f2b3]">
-                <Typewriter
-                  options={{
-                    strings: personalData.profession.map((val, index) => {
-                      return `${val}`;
-                    }),
-                    autoStart: true,
-                    loop: true,
-                  }}
-                />
+                {professionStrings.length > 0 ? (
+                  <Typewriter
+                    options={{
+                      strings: professionStrings,
+                      autoStart: true,
+                      loop: true,
+                    }}
+                  />
+                ) : (
+                  <span className="text-[#16f2b3]">Loading...</span>
+                )}
               </span>
             </h1>
             <div className="my-12 flex items-center gap-5">
