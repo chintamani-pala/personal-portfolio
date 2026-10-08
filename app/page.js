@@ -196,7 +196,7 @@ export default function Home() {
       <Blog data={mergedPersonalData} />
       <Github data={mergedPersonalData} />
       <ContactSection data={mergedPersonalData} />
-      <Chatbot />
+  {/*<Chatbot />*/}
     </>
   );
 }
